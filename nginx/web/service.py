@@ -105,7 +105,7 @@ class BranchesHandler(tornado.web.RequestHandler):
         """ 返回 Nginx 的分支.
 
         """
-        cmd = "cd %s &&git fetch origin &&git branch -r" % NGINX_CONF_DIR
+        cmd = "cd %s &&git fetch origin -p &&git branch -r" % NGINX_CONF_DIR
         rc, so, se = utils.shell(cmd)    
         branches = [
             i.strip().replace("origin/", "") 
