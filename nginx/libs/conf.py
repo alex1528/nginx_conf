@@ -11,7 +11,7 @@ import functools
 from libs import log, utils, loki, redisoj, storage
 from web.const import (NGINX_CONF_DIR, 
                        NGINX_TMP_STORAGE_DIR, 
-                       NGINX_UPSTREAM_TEMPLATE_DIR, 
+                       NGINX_TEMPLATE_DIR, 
                        NGINX_UPSTREAM_TEMPLATE_FILE, 
                        NGINX_SSL_ORIGIN_DIR, 
                        NGINX_SSL_DEST_DIR, 
@@ -125,7 +125,7 @@ def get(nginx, branch):
 
     # 生成 upstream.conf 文件.
     upstream_path = "%s/upstream.conf" % conf_tmp_dir
-    template.gen(NGINX_UPSTREAM_TEMPLATE_DIR, 
+    template.gen_upstream(NGINX_TEMPLATE_DIR, 
                  NGINX_UPSTREAM_TEMPLATE_FILE, 
                  upstream_path, 
                  upstream_data)

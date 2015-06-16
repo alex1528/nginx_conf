@@ -17,8 +17,9 @@ REDIS_DB_NGINX = "0"
 # Nginx 信息.
 NGINX_CONF_DIR = "/home/work/nginx_cfg/"   # Nginx git 项目配置文件.
 NGINX_TMP_STORAGE_DIR = "nginx_conf/"   # 临时存储 Nginx 配置主目录.
-NGINX_UPSTREAM_TEMPLATE_DIR = "nginx/template/"
+NGINX_TEMPLATE_DIR = "nginx/template/"
 NGINX_UPSTREAM_TEMPLATE_FILE = "upstream.conf"
+NGINX_SERVER_TEMPLATE_FILE = "server.conf"
 
 # Nginx ssl 证书文件, ssl 证书放在 git 中不安全, 这里从 NGINX_SSL_ORIGIN_DIR
 # 拷贝到 NGINX_CONF_DIR 目录下的 NGINX_SSL_DEST_DIR 目录里.

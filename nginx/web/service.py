@@ -13,7 +13,7 @@ from tornado import gen
 
 from libs import utils
 from lvs.libs import info
-from nginx.libs import wstype, conf, upstream
+from nginx.libs import wstype, conf, upstream, domains
 from web.const import NGINX_CONF_DIR
 
 
@@ -152,3 +152,24 @@ class UpstreamHandler(tornado.web.RequestHandler):
         """
         status, result = upstream.delete(name)
         self.write(_self_write(status, name, "delet", result))
+
+
+class DomainsHandler(tornado.web.RequestHandler):
+
+    def post(self):
+        """ 增加 域名. 
+
+        """
+        product = json.loads(self.get_argument('product'))
+        _type = json.loads(self.get_argument('type'))
+        idc = json.loads(self.get_argument('idc')) 
+        name = json.loads(self.get_argument('name')) 
+        server_names = json.loads(self.get_argument('server_names'))
+        upstream_node = json.loads(self.get_argument('upstream_node'))
+        log_name = json.loads(self.get_argument('log_name'))
+        log_format = json.loads(self.get_argument('log_format'))
+
+        status = domains.add(product, _type, idc, name,
+                             server_names, log_name, 
+                             log_format, upstream_node)
+        self.write(_self_write(status, name, "add"))

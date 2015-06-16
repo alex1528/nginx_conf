@@ -31,6 +31,7 @@ class Application(tornado.web.Application):
             (r"/api/v1/nginx/branches/?", nginx_service.BranchesHandler),
             (r"/api/v1/nginx/upstreams/([^/]+)/?", nginx_service.UpstreamHandler),
             (r"/api/v1/nginx/upstreams/?", nginx_service.UpstreamsHandler),
+            (r"/api/v1/nginx/domains/?", nginx_service.DomainsHandler)        
         ]
 
         settings = {}

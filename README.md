@@ -11,7 +11,9 @@ Nginx 配置管理, 基于 git, 并分产品线, 内网外网和机房三个维�
 
     4. Nginx upstream 信息放在 mysql, 根据模板生成upstream.conf, 机器列表实时从服务管理系统获取;
 
-    5. 支持 ip_hash 字段, online 字段表示 是否在线, 不为1 不生成配置.
+    5. 支持 ip_hash 字段, online 字段表示 是否在线, 不为1 不生成配置;
+
+    6. 支持增加域名, 自动生成配置文件并 push 到 origin.
 
 
 
