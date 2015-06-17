@@ -11,7 +11,7 @@ from libs import log, utils
 from web.const import (NGINX_CONF_DIR, 
                        NGINX_TEMPLATE_DIR,
                        NGINX_SERVER_TEMPLATE_FILE)
-from nginx.libs import template
+from nginx.libs import template, upstream
 
 
 logger = log.get_logger("Nginx DOMAINS ")
@@ -26,8 +26,7 @@ def _shell(cmd, _logger=logger):
         message = "cmd:%s" % cmd
         _logger.info(message)
     else:
-        message = "cmd:%s, error:%s" % (
-            cmd, se)
+        message = "cmd:%s, error:%s" % (cmd, se)
         raise Exception(message)
 
 
@@ -35,6 +34,9 @@ def add(product, _type, idc, name, server_names, log_name, log_format, upstream_
     """ 增加域名的配置.
 
     """
+    if upstream_node not in upstream_nodes:
+        raise Exception("%s not exist" % upstream_node)
+
     domain_conf_dir = "%s/sites-available/%s/%s/%s/" % (NGINX_CONF_DIR,
                                                         product,
                                                         _type,
