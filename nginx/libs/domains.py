@@ -34,8 +34,17 @@ def add(product, _type, idc, name, server_names, log_name, log_format, upstream_
     """ 增加域名的配置.
 
     """
+    upstreams = upstream.get()
+    upstream_nodes = [ i["name"] for i in upstreams ]
     if upstream_node not in upstream_nodes:
         raise Exception("%s not exist" % upstream_node)
+    else:
+        for i in upstreams:
+            if i["name"] == upstream_node:
+                if i["online"] != 1:
+                    raise Exception("%s is offline" % i["name"])
+                else:
+                    break
 
     domain_conf_dir = "%s/sites-available/%s/%s/%s/" % (NGINX_CONF_DIR,
                                                         product,
